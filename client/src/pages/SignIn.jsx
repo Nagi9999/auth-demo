@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   signInStart,
   signInSuccess,
-  SignInFailure,
+  signInFailure,
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import OAuth from "../components/OAuth";
@@ -32,7 +32,7 @@ export default function SignIn() {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(SignInFailure(data));
+        dispatch(signInFailure(data));
         return;
       }
 
@@ -40,7 +40,7 @@ export default function SignIn() {
 
       navigate("/");
     } catch (error) {
-      dispatch(SignInFailure(error));
+      dispatch(signInFailure(error));
     }
   };
   return (
